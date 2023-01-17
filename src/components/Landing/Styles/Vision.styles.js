@@ -2,11 +2,15 @@ import htmlStyled from 'styled-components' ;
 
 export const VisionDiv = htmlStyled.div`
     padding-top : 150px;
-
+    padding-bottom : 40px;
+    
     display : flex;
     justify-content : center;
     align-items :center;
     flex-direction : column;
+
+    background : white;
+    width : 100%;
 
     p {
         text-align :center;

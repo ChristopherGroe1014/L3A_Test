@@ -1,6 +1,7 @@
 import * as React from 'react' ;
 
 import AllInOne from 'src/components/Landing/AllInOne';
+import RealTime from 'src/components/Landing/RealTime';
 import Vision from 'src/components/Landing/Vision';
 
 import { 
@@ -12,6 +13,7 @@ const Landing = () => {
         <LandingRoot>
             <AllInOne />
             <Vision />
+            <RealTime />
         </LandingRoot>
     )
 }

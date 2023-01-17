@@ -9,6 +9,20 @@ export const AllInOneDiv = htmlStyled.div`
     flex-direction : column ;
     justify-content : center;
     align-items : center;
+
+    @keyframes displayIn {
+        0% {
+            opacity : 0;
+        }
+        50% {
+            opacity : 0.5;
+        }
+        100% {
+            opacity : 1;
+        }
+    }
+
+    animation: displayIn 2s ease forwards;
 `
 export const TitleDiv = htmlStyled.p`
     max-width : 1000px;
@@ -78,6 +92,21 @@ export const LinkDiv = htmlStyled.div`
 `
 
 export const ItemList = htmlStyled.div` 
+
+    @keyframes displayIn {
+        0% {
+            opacity : 0;
+        }
+        50% {
+            opacity : 0.5;
+        }
+        100% {
+            opacity : 1;
+        }
+    }
+
+    animation: displayIn 2s ease forwards;
+
     margin-top : 50px;
     padding-top : 10px;
     padding-bottom : 30px;

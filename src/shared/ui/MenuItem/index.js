@@ -41,6 +41,8 @@ const MenuPadArea = htmlStyled.div`
     display : ${props => props.isHidden ? "none" : "block"} ;
     position : absolute;
 
+    left : -50px;
+
     z-index : 1000;
 `
 
@@ -49,7 +51,7 @@ const MenuPad = htmlStyled.div`
 
     box-shadow : 1px 1px 9px 0px grey;
 
-    padding : 10px;
+    padding : 40px;
 
     background-color : white;
 

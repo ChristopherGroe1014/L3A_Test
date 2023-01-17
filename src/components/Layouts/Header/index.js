@@ -25,7 +25,7 @@ import
     MenuItem
  from '../../../shared/ui/MenuItem' ;
 
-import AboutMenu from './PopOvers/AboutMenu';
+import About from 'src/components/Header/About';
 
 const Header = () => {
     const match1190 = useMediaQuery('(min-width : 1190px)') ;
@@ -77,20 +77,14 @@ const Header = () => {
 
             <HeaderList>
                 { match1030 && <LogoImg src={LogoImage} /> }
-                { match860 && <MenuList>
-                    {/* <MenuItem onClick={(e) => handleOpenAboutMenu(e)} ref={aboutRef}>
-                        {"About"}
-                    </MenuItem> */}
-                    {
-                        menuList.map((item, index) => (
-                            <MenuItem key={index} label={item.label}>
-                                {/* {item.label} */}
-                            </MenuItem>
-                        ))
-                    }
-
-                    
-                </MenuList> }
+               
+                {
+                    menuList.map((item, index) => (
+                        <MenuItem label={item.label} key={index}>
+                            <About />
+                        </MenuItem>
+                    ))
+                }
 
                 { match1190 && <BuildingButton >Start Building</BuildingButton> }
                 { !match1190 && <IconButton onClick={() => handleDrawMobileNavbar()}>

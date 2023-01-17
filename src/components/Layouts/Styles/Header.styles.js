@@ -60,6 +60,11 @@ export const BuildingButton = withStyles({
         backgroundColor : 'transparent !important',
         border : '1px solid blue !important',
         color : 'blue !important',
-        textTransform : 'capitalize !important'
+        textTransform : 'capitalize !important',
+        borderRadius : '0px !important',
+        paddingLeft : '20px !important',
+        paddingRight : '20px !important',
+        paddingTop : '5px !important',
+        paddingBottom : '5px !important',
     }
 })(Button);

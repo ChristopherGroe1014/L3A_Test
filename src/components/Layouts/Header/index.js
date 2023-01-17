@@ -1,83 +1,114 @@
 import * as React from 'react' ;
 
-import { Link } from 'react-router-dom';
+import LogoImage from '../../../assets/Landing/logo.jpg' ;
 
-import LogoImage from '../../../assets/Landing/logo.png' ;
+import MenuIcon from '@mui/icons-material/Menu';
+
+import MobileNavbar from './MobileNavbar';
 
 import {
+    useMediaQuery,
+    IconButton
+} from '@mui/material';
+
+import {
+    GradientDiv,
     HeaderDiv,
     LogoImg,
-    NavList,
-    LinkList,
-    MenuList
+    MenuList,
+    HeaderList,
+    // MenuItem,
+    BuildingButton
 } from '../Styles/Header.styles' ;
 
+import 
+    MenuItem
+ from '../../../shared/ui/MenuItem' ;
+
+import AboutMenu from './PopOvers/AboutMenu';
+
 const Header = () => {
+    const match1190 = useMediaQuery('(min-width : 1190px)') ;
+    const match1030 = useMediaQuery('(min-width : 1030px)') ;
+    const match860 = useMediaQuery('(min-width : 860px)') ;
+
     const menuList = [
         {
-            label : "Home",
-            link : "/#"
-        },
-        {
-            label : 'About Us',
+            label : "About",
             link : '/#'
         },
         {
-            label : "Our NFTs",
+            label : 'Products',
             link : '/#'
         },
         {
-            label : "Roadmap",
+            label : "Infrastructure",
             link : '/#'
         },
         {
-            label : "Our Team",
+            label : "Transparency & Governance",
+            link : '/#'
+        },
+        {
+            label : "Community",
             link : '/#'
         }
     ];
 
-    const linkList = [
-        {
-            label : 'Follow Us-',
-            link : '/#'
-        },
-        {
-            label : 'Facebook',
-            link : '/#'
-        },
-        {
-            label : 'Instagram',
-            link : '/#'
-        },
-        {
-            label : 'Twitter',
-            link : '/#'
-        }
-    ];
+    const [ isDrawMobileNavbar, setIsDrawMobileNavbar ] = React.useState(false) ;
+
+    const aboutRef = React.useRef(null) ;
+
+    const [isOpenAboutMenu, setIsOpenAboutMenu] = React.useState(false);
+
+    const handleOpenAboutMenu = () => {
+        setIsOpenAboutMenu(!isOpenAboutMenu)
+    }
+
+    const handleDrawMobileNavbar = () => {
+        setIsDrawMobileNavbar(!isDrawMobileNavbar) ;
+    }
 
     return (
         <HeaderDiv>
-            <LogoImg src={LogoImage} />
-            <NavList>
-                <LinkList>
-                    {
-                        linkList.map((item, index) => (
-                            <Link key={index} to={item.link}>
-                                {item.label}
-                            </Link>
-                        ))
-                    }
-                </LinkList>
-                <MenuList>
+            <GradientDiv>
+                Query engine is live! Apply for beta testing here
+            </GradientDiv>
+
+            <HeaderList>
+                { match1030 && <LogoImg src={LogoImage} /> }
+                { match860 && <MenuList>
+                    {/* <MenuItem onClick={(e) => handleOpenAboutMenu(e)} ref={aboutRef}>
+                        {"About"}
+                    </MenuItem> */}
                     {
                         menuList.map((item, index) => (
-                            <Link key={index} to={item.link}>
-                                {item.label}
-                            </Link>
+                            <MenuItem key={index} label={item.label}>
+                                {/* {item.label} */}
+                            </MenuItem>
                         ))
                     }
-                </MenuList>
-            </NavList>
+
+                    
+                </MenuList> }
+
+                { match1190 && <BuildingButton >Start Building</BuildingButton> }
+                { !match1190 && <IconButton onClick={() => handleDrawMobileNavbar()}>
+                    <MenuIcon />
+                </IconButton> }
+            </HeaderList>
+{/* 
+            <AboutMenu
+                open={isOpenAboutMenu}
+                handlePopOver={handleOpenAboutMenu}
+                anchorEl={aboutRef ? aboutRef.current : null}
+            /> */}
+
+            <MobileNavbar 
+                isDrawMobileNavbar={isDrawMobileNavbar}
+                handleDrawMobileNavbar={handleDrawMobileNavbar}
+                menuList={menuList}
+            />
         </HeaderDiv>
     )
 }

@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
-
-import { Link, useNavigate } from 'react-router-dom' ;
-
-import { getCookie } from '../../../../utils/Helper';
-import Avatar1Img from '../../../../assets/avatars/avatar1.png';
+import * as React from 'react';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types' ;
 
 import { makeStyles } from '@mui/styles';
 
-import SearchIcon from '@mui/icons-material/Search';
-
 import {
-    Box,
-    Divider,
-    Drawer,
-    List,
-    ListItem,
-    useMediaQuery,
-    Avatar,
-    Button,
+    Drawer, IconButton,
 } from '@mui/material' ;
+
+import { MenuList, MenuItem } from '../../Styles/MobileNavbar.styles';
+import { CloseDiv } from '../../Styles/MobileNavbar.styles';
+import CloseIcon from '@mui/icons-material/Close';
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
@@ -39,54 +29,28 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width : "100%",
-        top : "60px !important",
         backgroundColor : theme.palette.common.lightBlack + " !important",
         color : theme.palette.common.label + " !important",
         '& ::-webkit-scrollbar': {
             display: 'none !important',
         },
     },
-    inList : {
-        "& .MuiListItem-root" : {
-            paddingLeft : "30px",
-        }
-    },
-    cancel : {
-        width : '100%',
-        textAlign : 'right',
-        cursor : 'pointer'
-    },
-    avatar : {
-        display : 'flex'
-    },
-    avatarLabel : {
-        marginLeft: 30,
-        display : 'flex',
-        alignItems : 'center',
-
-        fontSize : 20,
-        fontWeight : 600
-    }
 })) ;
+
+
 
 const MobileNavbar = (props) => {
   
     const classes = useStyles() ;
     
-    const match1 = useMediaQuery('(min-width : 725px)') ;
-
-    const navigate = useNavigate() ;
-
-    const [ routine, setRoutine ] = useState('') ;
-
     const {
         isDrawMobileNavbar, handleDrawMobileNavbar,
+        menuList
     } = props ;
 
-    const handleSignOut = () => {
-        SignOutUser(navigate) ;
-        handleDrawMobileNavbar() ;
-    }
+    React.useEffect(() => {
+        console.log(menuList)
+    }, [menuList]) ;
 
     return (
             <Drawer
@@ -98,35 +62,18 @@ const MobileNavbar = (props) => {
                     paper : classes.drawerPaper
                 }}
             >
-            <List>
-                <ListItem>
-                    <Box className={classes.cancel}>
-                        <Box onClick={handleDrawMobileNavbar} component={'span'} sx={{fontSize : 25}}>
-                            &times;
-                        </Box>
-                    </Box>
-                </ListItem>
-                <Divider />
-                {
-                    getCookie('email') && <ListItem>
-                        <Box className={classes.avatar} >
-                            <Avatar src={Avatar1Img} />
-                            <Box component={'span'} className={classes.avatarLabel}>
-                                { getCookie('email').split("@")[0] }
-                            </Box>
-                        </Box>
-                    </ListItem>
-                }
-
-                <Divider />
-                
-                <ListItem>
-                    <Button variant={'outlined'} sx={{borderRadius : 20}}
-                        onClick={handleSignOut}
-                    >Sign Out</Button>
-                </ListItem>
-                <Divider />
-            </List>
+                <CloseDiv>
+                    <IconButton onClick={() => handleDrawMobileNavbar()}><CloseIcon/></IconButton>
+                </CloseDiv>
+                <MenuList>
+                    {
+                        menuList && menuList.map((item, index) => (
+                            <MenuItem key={index}>
+                                {item.label}
+                            </MenuItem>
+                        ))
+                    }
+                </MenuList>
             </Drawer> 
     )  
 }

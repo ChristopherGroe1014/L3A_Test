@@ -1,43 +1,19 @@
 import * as React from 'react' ;
 
-import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux' ;
+import AllInOne from 'src/components/Landing/AllInOne';
+import Vision from 'src/components/Landing/Vision';
 
-import Footer from '../../components/Layouts/Footer';
+import { 
+    LandingRoot
+} from './index.styles';
 
-
-import {
-    Box,
-    Grid,
-} from '@mui/material' ;
-
-import { makeStyles } from '@mui/styles' ;
-
-const useStyles = makeStyles((theme) => ({
-    root : {
-        color : 'white',
-    },
-})) ;
-
-const Landing = (props) => {
-
-    const classes = useStyles();
-    const navigate = useNavigate() ;
-    
+const Landing = () => {
     return (
-        <Box className={classes.root}>
-            <Box className={classes.background}/>
-            <Footer />
-        </Box>
+        <LandingRoot>
+            <AllInOne />
+            <Vision />
+        </LandingRoot>
     )
 }
 
-
-const mapStateToProps = state => ({
-})
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Landing) ;
-
+export default Landing;

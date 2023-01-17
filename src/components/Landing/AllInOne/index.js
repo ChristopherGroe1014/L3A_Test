@@ -22,7 +22,8 @@ import {
     ItemDesc,
     Item,
     ItemImg,
-    ItemList
+    ItemList,
+    ItemImgDiv
 } from '../Styles/AllInOne.styles';
 
 
@@ -41,7 +42,6 @@ const AllInOne = () => {
         {
             label : "Opensource",
             desc : "Live & historical data",
-            img : SourceImg
         },
         {
             label : "Decentralization",
@@ -54,7 +54,6 @@ const AllInOne = () => {
         {
             label : "Transparency",
             desc : "Live & historical data",
-            img : TransparencyImg,
         },
         {
             label : "Free data feeds",
@@ -76,7 +75,7 @@ const AllInOne = () => {
                 {
                     itemList.map((item, index) => (
                         <Item key={index}>
-                            <ItemImg src={item.img} />
+                            <ItemImgDiv imgSrc={item.img} />
                             <ItemLabel>
                                 {
                                     item.label

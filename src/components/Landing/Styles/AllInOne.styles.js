@@ -150,3 +150,13 @@ export const ItemImg = htmlStyled.img`
     width : 30px;
     margin-bottom : 20px;
 `
+
+export const ItemImgDiv = htmlStyled.div`
+    width : 50px;
+    height : 50px;
+
+    mask-size: cover;
+
+    background-color : blue;
+    mask : url('${props => props.imgSrc}') no-repeat;
+`
